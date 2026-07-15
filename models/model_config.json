@@ -1,0 +1,33 @@
+{
+    "model_type": "HistGradientBoostingRegressor",
+    "target_column": "Power Consumption (kW)",
+    "timestamp_column": "Timestamp",
+    "feature_columns": [
+        "Solar Power (kW)",
+        "Wind Power (kW)",
+        "Temperature (\u00b0C)",
+        "Humidity (%)",
+        "Electricity Price (USD/kWh)",
+        "hour",
+        "day_of_week",
+        "month",
+        "is_weekend",
+        "lag_1",
+        "lag_4",
+        "lag_96",
+        "rolling_mean_4",
+        "rolling_mean_24",
+        "rolling_mean_96"
+    ],
+    "train_test_split": "chronological_80_20",
+    "anomaly_threshold": 4.881138557279104,
+    "metrics": {
+        "baseline_mae": 3.4723509857575263,
+        "baseline_rmse": 4.250706923491682,
+        "model_mae": 2.5951544227502175,
+        "model_rmse": 2.99766429113767,
+        "mae_improvement_percent": 25.26232418915279,
+        "rmse_improvement_percent": 29.478452758740627,
+        "test_anomaly_rate_percent": 5.740907724676886
+    }
+}
