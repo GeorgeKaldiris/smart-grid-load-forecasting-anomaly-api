@@ -2,13 +2,13 @@
 
 An end-to-end machine learning project for smart grid power consumption forecasting and residual-based anomaly detection.
 
-The project includes exploratory analysis, feature engineering, model training, saved ML artifacts, a FastAPI inference API, automated tests, Docker containerization, and GitHub Actions CI.
+The project includes exploratory analysis, feature engineering, model training, saved ML artifacts, a FastAPI inference API, automated tests, Docker containerization and GitHub Actions CI.
 
 ---
 
 ## Project Overview
 
-The goal of this project is to predict smart grid power consumption using historical and contextual features, and to detect potential anomalies by comparing actual power consumption against the model prediction.
+The goal of this project is to predict smart grid power consumption using historical and contextual features and to detect potential anomalies by comparing actual power consumption against the model prediction.
 
 The API can be used in two modes:
 
