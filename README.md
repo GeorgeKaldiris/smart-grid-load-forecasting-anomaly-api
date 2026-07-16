@@ -2,7 +2,7 @@
 
 An end-to-end machine learning project for smart grid power consumption forecasting and residual-based anomaly detection.
 
-The project includes exploratory analysis, feature engineering, model training, saved ML artifacts, a FastAPI inference API, automated tests, Docker containerization and GitHub Actions CI.
+The project includes exploratory analysis, feature engineering, model training, saved ML artifacts, a FastAPI inference API, Docker containerization, automated testing, GitHub Actions CI and a basic short-lived cloud deployment demo using Azure Container Apps.
 
 ---
 
@@ -18,6 +18,8 @@ The API can be used in two modes:
 2. **Forecasting + anomaly detection**  
    If `actual_power_kw` is provided, the API calculates the residual and flags whether the point is anomalous.
 
+This is a learning and portfolio project focused on practicing an end-to-end ML engineering workflow. It is not intended to be presented as a production-grade smart grid monitoring system.
+
 ---
 
 ## Tech Stack
@@ -29,6 +31,8 @@ The API can be used in two modes:
 - FastAPI
 - Uvicorn
 - Docker
+- Docker Hub
+- Azure Container Apps basic deployment demo
 - pytest
 - GitHub Actions CI
 
@@ -162,6 +166,8 @@ Final Model RMSE: 2.9977
 MAE improvement: 25.26%
 RMSE improvement: 29.48%
 ```
+
+The final model improved both MAE and RMSE compared to the naive baseline.
 
 ---
 
@@ -328,6 +334,43 @@ http://127.0.0.1:8001/docs
 
 ---
 
+## Cloud Deployment Demo
+
+As an additional deployment exercise, the Dockerized FastAPI inference service was deployed as a basic short-lived cloud demo using Azure Container Apps.
+
+The goal was not to build a production-grade cloud system, but to practice the basic flow of serving a containerized ML API through a public cloud endpoint.
+
+Deployment flow:
+
+```text
+Docker image -> Docker Hub -> Azure Container Apps -> Public FastAPI endpoint
+```
+
+The deployed API was successfully tested through the Swagger UI:
+
+```text
+GET /health   -> 200 OK
+POST /predict -> 200 OK
+```
+
+The `/predict` endpoint returned a valid model response including:
+
+```text
+predicted_power_kw
+model_type
+anomaly_threshold
+actual_power_kw
+residual
+abs_residual
+is_anomaly
+```
+
+After testing, the Azure resource group was deleted to avoid leaving active cloud resources running.
+
+This was a basic cloud deployment demo for portfolio and learning purposes, not a full production deployment.
+
+---
+
 ## CI/CD
 
 This project includes a GitHub Actions CI workflow.
@@ -366,3 +409,20 @@ This project demonstrates:
 - Dockerized inference API
 - Automated testing with pytest
 - GitHub Actions CI
+- Basic cloud deployment exposure using Azure Container Apps
+- Docker image publishing through Docker Hub
+
+---
+
+## Limitations and Future Improvements
+
+This project is a junior-level portfolio project and not a production-grade smart grid monitoring system.
+
+Possible future improvements:
+
+- Add MLflow for experiment tracking
+- Add model monitoring for prediction drift and residual distribution changes
+- Add a retraining workflow
+- Add more robust API logging and error handling
+- Deploy through an automated CI/CD pipeline instead of a manual cloud demo
+- Compare more forecasting models on multiple time windows
